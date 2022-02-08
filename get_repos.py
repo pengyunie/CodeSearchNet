@@ -10,7 +10,7 @@ from tqdm import tqdm
 def get_repos(
     language: str,
     download_dir: Union[Path_drw, Path_dc, Path] = Path.cwd() / "resources" / "data",
-    out_dir: Union[Path_drw, Path_dc, Path] = Path.cwd() / "resources" / "data",
+    out_dir: Union[Path_drw, Path_dc, Path] = Path.cwd() / "repos",
 ):
     if not isinstance(download_dir, Path):
         download_dir = Path(download_dir.abs_path)
@@ -45,7 +45,9 @@ def get_repos(
         print(f"{len(overlap_repos)} repos in {sn} overlap with previous")
         seen_repos |= repos
 
-        su.io.dump(out_dir / language / f"{sn}_repos.txt", sorted(repos), su.io.Fmt.txtList)
+        su.io.dump(
+            out_dir / language / f"{sn}_repos.txt", sorted(repos), su.io.Fmt.txtList
+        )
 
 
 if __name__ == "__main__":
